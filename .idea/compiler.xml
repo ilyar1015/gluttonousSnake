@@ -9,5 +9,8 @@
         <module name="gluttonousSnake" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gluttonousSnake" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
