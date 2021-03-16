@@ -51,17 +51,19 @@ public class GamePanel extends JFrame implements ActionListener, KeyListener {
         addKeyListener(this);
     }
 
-    public void threadRun(){
+    private void threadRun() {
         Thread snick = new Thread(new Runnable() {
             public void run() {
-                while(true){
-                    if ("l".equalsIgnoreCase(operation)){
+
+                while (true) {
+                    waitSnick(1000);
+                    if ("l".equalsIgnoreCase(operation)) {
                         System.out.println("l");
-                    }else if("r".equalsIgnoreCase(operation)){
-                        System.out.println("l");
-                    }else if("t".equalsIgnoreCase(operation)){
+                    } else if ("r".equalsIgnoreCase(operation)) {
+                        System.out.println("r");
+                    } else if ("t".equalsIgnoreCase(operation)) {
                         System.out.println("t");
-                    }else if("b".equalsIgnoreCase(operation)){
+                    } else if ("b".equalsIgnoreCase(operation)) {
                         System.out.println("b");
                     }
 
@@ -73,7 +75,6 @@ public class GamePanel extends JFrame implements ActionListener, KeyListener {
 
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());
-
     }
 
     public void keyTyped(KeyEvent e) {
@@ -83,18 +84,26 @@ public class GamePanel extends JFrame implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         String key = String.valueOf(e.getKeyChar());
         System.out.println(e.getKeyChar());
-        if("w".equalsIgnoreCase(key)){
+        if ("w".equalsIgnoreCase(key)) {
             operation = "t";
-        }else if("s".equalsIgnoreCase(key)){
+        } else if ("s".equalsIgnoreCase(key)) {
             operation = "b";
-        }else if("a".equalsIgnoreCase(key)){
+        } else if ("a".equalsIgnoreCase(key)) {
             operation = "l";
-        }else if("d".equalsIgnoreCase(key)){
+        } else if ("d".equalsIgnoreCase(key)) {
             operation = "r";
         }
     }
 
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    private void waitSnick(int time){
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
